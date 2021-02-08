@@ -1,11 +1,17 @@
 # My Personal Project
 
-## A subtitle
+## A take-out food app
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+- **Function**
+
+ *this app can reserve burger, it also can set the time guest want to get burger*
+- **Users**
+
+*user can be the burger restaurant owner to get order of burger*
+
+- **interested me reason**
+
+*During working day, many people get in long queque to order time, and shop assistant are very busy.This app can save 
+customers' some time and reduce the stress of clerks*
+
