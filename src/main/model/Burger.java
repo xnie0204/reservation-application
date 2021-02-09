@@ -21,8 +21,4 @@ public class Burger {
     public int getPrice() {
         return price;
     }
-
-    public
-
-
 }
