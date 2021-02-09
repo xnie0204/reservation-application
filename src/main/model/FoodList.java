@@ -28,7 +28,7 @@ public class FoodList {
     public int getTotalPrice(){
         totalPrice = 0;
         for (Food f : foodList ){
-            totalPrice +=
+            totalPrice += f.getPrice();
         }
         return totalPrice;
     }
