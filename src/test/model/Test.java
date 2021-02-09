@@ -2,25 +2,26 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class BurgerTest {
-    private  Burger BurgerA;
-    private  Burger BurgerB;
+class test {
+    private Food BurgerA;
+    private Food BurgerB;
 
     @BeforeEach
-    public void runBefore(){
-        BurgerA = new Burger("BeefBurger",8);
-        BurgerB = new Burger("ChickenBurger",6);
+    public void runBefore() {
+        BurgerA = new Food("BeefBurger", 8);
+        BurgerB = new Food("ChickenBurger", 6);
     }
 
     @Test
-    public void testConstructor(){
-        assertEquals(8,BurgerA.getPrice());
-        assertEquals(6,BurgerB.getPrice());
+    public void testConstructor() {
+        assertEquals(8, BurgerA.getPrice());
+        assertEquals(6, BurgerB.getPrice());
 
         assertEquals("BeefBurger", BurgerA.getName());
-        assertEquals("ChickenBurger",BurgerB.getName());
+        assertEquals("ChickenBurger", BurgerB.getName());
     }
 
 //    @Test

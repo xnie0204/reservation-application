@@ -1,7 +1,7 @@
 package model;
 
 //Represent a burger's name and price
-public class Burger {
+public class Food {
     private String name;
     private int price;
 
@@ -9,9 +9,9 @@ public class Burger {
      *             burgerPrice >= 0
      * EFFECTS: name and price on burger is set to burgerName and burgerPrice;
      */
-    public Burger(String burgerName, int burgerPrice) {
-        this.name = burgerName;
-        this.price = burgerPrice;
+    public Food(String foodName, int foodPrice) {
+        this.name = foodName;
+        this.price = foodPrice;
     }
 
     public String getName() {

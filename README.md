@@ -5,10 +5,10 @@
 ###Abstract
 - **Function**
 
- *this app can reserve burger, it also can set the time guest want to get burger*
+ *this app can reserve food, it also can set the time guest want to get food*
 - **Users**
 
-*user can be the burger restaurant customers who want to reserve  burgers*
+*user can be the  restaurant customers who want to reserve food*
 
 - **interested me reason**
 
