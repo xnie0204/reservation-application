@@ -3,12 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+// Represents a list of food
 public class FoodList {
     private ArrayList<Food> foodList;
     private String reserveTime;
     private int totalPrice;
     private int totalOrderNum;
 
+    // EFFECTS: set is empty
     public FoodList() {
         foodList = new ArrayList<>();
     }
@@ -18,28 +20,39 @@ public class FoodList {
     public void addFood(Food f) {
         foodList.add(f);
     }
+
     //Modify：this
     //EFFECT: delete food form foodlist
     public void deleteFood(Food f) {
         foodList.remove(f);
     }
-    //REQUIRE:totalPrice can't less than 0.
+
+    //REQUIRES:totalPrice can't less than 0.
     //EFFECT: calculate the total price.
-    public int getTotalPrice(){
+    public int getTotalPrice() {
         totalPrice = 0;
-        for (Food f : foodList ){
+        for (Food f : foodList) {
             totalPrice += f.getPrice();
         }
         return totalPrice;
     }
 
-    public int getTotalOrderNum(){
+    //REQUIRES:total oder num can't less than 0.
+    //EFFECT: calculate the total reserve food number.
+    public int getTotalOrderNum() {
         totalOrderNum = 0;
-        for (Food f: foodList){
+        for (Food f : foodList) {
             totalOrderNum += 1;
         }
         return totalOrderNum;
     }
 
+    //EFFECT:represent the number in the food-list
+    public int size() {
+        return foodList.size();
+    }
 
+    public boolean contain(Food f) {
+        return foodList.contains(f);
+    }
 }

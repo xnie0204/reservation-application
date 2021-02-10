@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class test {
+class testFood {
     private Food BurgerA;
     private Food BurgerB;
 
@@ -23,10 +23,4 @@ class test {
         assertEquals("BeefBurger", BurgerA.getName());
         assertEquals("ChickenBurger", BurgerB.getName());
     }
-
-//    @Test
-//    public void testToString(){
-//        assertEquals("BeefBurger($8.00)",BurgerA.toString());
-//        assertEquals("ChickenBurger($6.00)",BurgerB.toString());
-//    }
 }
