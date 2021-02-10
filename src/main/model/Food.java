@@ -22,4 +22,18 @@ public class Food {
     public int getPrice() {
         return price;
     }
+
+    //REQUIRES: price  can't less than0
+    //MODIFIES: this
+    //EFFECTS: set or change  the price
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    //REQUIRES: String lenth can't be 0
+    //MODIFIES: this
+    //EFFECTS:set or change the name
+    public void setName(String name) {
+        this.name = name;
+    }
 }

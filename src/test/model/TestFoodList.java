@@ -42,6 +42,7 @@ public class TestFoodList {
         foodList.deleteFood(cola);
         assertEquals(1,foodList.size());
         assertFalse(foodList.contain(cola));
+
     }
 
     @Test
