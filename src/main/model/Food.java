@@ -25,9 +25,13 @@ public class Food {
 
     //REQUIRES: price  can't less than0
     //MODIFIES: this
-    //EFFECTS: set or change  the price
+    //EFFECTS: set or change  the price ，if the set the price is negative, set it as 10000000 to protect.
     public void setPrice(int price) {
-        this.price = price;
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            this.price = 10000000;
+        }
     }
 
     //REQUIRES: String length can't be 0

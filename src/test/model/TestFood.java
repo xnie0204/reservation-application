@@ -32,6 +32,9 @@ class testFood {
         BurgerA.setPrice(10);
         assertEquals(10,BurgerA.getPrice());
         assertEquals("BeefBurger",BurgerA.getName());
+
+        BurgerA.setPrice(-10);
+        assertEquals(10000000,BurgerA.getPrice());
     }
 
     @Test
