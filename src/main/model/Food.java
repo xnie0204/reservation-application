@@ -30,7 +30,7 @@ public class Food {
         this.price = price;
     }
 
-    //REQUIRES: String lenth can't be 0
+    //REQUIRES: String length can't be 0
     //MODIFIES: this
     //EFFECTS:set or change the name
     public void setName(String name) {
