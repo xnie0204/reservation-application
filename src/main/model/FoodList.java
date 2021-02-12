@@ -1,7 +1,9 @@
 package model;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 // Represents a list of food
 public class FoodList {
@@ -55,4 +57,19 @@ public class FoodList {
     public boolean contain(Food f) {
         return foodList.contains(f);
     }
+
+
+    public String showTime() {
+        return reserveTime;
+    }
+
+    public void setTime(String time) {
+        this.reserveTime = time;
+    }
+
+    public ArrayList<Food> getList() {
+        return foodList;
+    }
+
+
 }
