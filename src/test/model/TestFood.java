@@ -44,4 +44,5 @@ class testFood {
         assertEquals("SuperBurger",BurgerA.getName());
         assertEquals(8,BurgerA.getPrice());
     }
+
 }
