@@ -110,7 +110,7 @@ public class ReserveAPP {
         showFoodList(foodList.getList());
         System.out.println("Total order num " + foodList.getTotalOrderNum());
         System.out.println("Total price $" + foodList.getTotalPrice());
-        System.out.println(foodList.showTime());
+        System.out.println("Reserve Time " + foodList.getTime());
         separatorLine();
     }
 
@@ -124,7 +124,7 @@ public class ReserveAPP {
 
 
     private void doSetTime() {
-        foodList.showTime();
+        foodList.getTime();
         System.out.println("Enter the time you want to reserve, eg( XX:XX)");
 
         String time = scanner.nextLine();

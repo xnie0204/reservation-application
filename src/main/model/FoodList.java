@@ -1,8 +1,9 @@
 package model;
 
-import java.sql.Time;
+
+import javafx.util.converter.LocalDateTimeStringConverter;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 // Represents a list of food
@@ -59,12 +60,19 @@ public class FoodList {
     }
 
 
-    public String showTime() {
-        return reserveTime;
+    public String getTime() {
+
+        if (reserveTime == null) {
+            return "Not set yet";
+        } else {
+            return reserveTime;
+        }
+
+
     }
 
     public void setTime(String time) {
-        this.reserveTime = time;
+        reserveTime = time;
     }
 
     public ArrayList<Food> getList() {

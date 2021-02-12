@@ -25,6 +25,7 @@ public class TestFoodList {
         foodList.addFood(cola);
         assertEquals(1,foodList.size());
         assertTrue(foodList.contain(cola));
+        assertEquals(1,foodList.getList().size());
 
         foodList.addFood(beefBurger);
         assertEquals(2,foodList.size());
@@ -63,7 +64,18 @@ public class TestFoodList {
         assertEquals(2,foodList.getTotalOrderNum());
     }
 
+    @Test
+    public void testSetTime(){
+        assertEquals("Not set yet",foodList.getTime());
+
+        foodList.setTime("12:00");
+        assertEquals("12:00",foodList.getTime());
+    }
+
+
+    }
 
 
 
-}
+
+

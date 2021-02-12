@@ -34,7 +34,7 @@ class testFood {
     @Test
     public void testSetName(){
         assertEquals("BeefBurger",BurgerA.getName());
-        BurgerA.setName("SuperBurger ");
+        BurgerA.setName("SuperBurger");
         assertEquals("SuperBurger",BurgerA.getName());
     }
 }
