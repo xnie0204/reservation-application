@@ -6,15 +6,16 @@ import model.FoodList;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Represent a reserve app
 public class ReserveAPP {
     private Scanner scanner;
     private FoodList foodList;
     private Food beefBurger;
     private Food cola;
     private Food superBurger;
-    private String time;
 
 
+    //EFFECTS :  Run the APP.
     public ReserveAPP() {
         foodList = new FoodList();
         beefBurger = new Food("BeefBurger", 8);
@@ -24,6 +25,7 @@ public class ReserveAPP {
         runReserveApp();
     }
 
+    //EFFECTS: displays menu of options to user
     public void runReserveApp() {
         foodList = new FoodList();
 
@@ -53,6 +55,8 @@ public class ReserveAPP {
         }
     }
 
+    //MODIFIES: this.
+    // EFFECTS: show and add food options to user
     private void doAddFood() {
 
         String operation = "";
@@ -78,6 +82,8 @@ public class ReserveAPP {
         separatorLine();
     }
 
+    //MODIFIES: this.
+    // EFFECTS: show and delete food options to user
     private void doDeletFood() {
         String operation = "";
         separatorLine();
@@ -89,7 +95,7 @@ public class ReserveAPP {
         System.out.println("[3] Super Burger($10)");
 
         operation = scanner.nextLine();
-        if (operation.equals(1)) {
+        if (operation.equals("1")) {
             foodList.deleteFood(beefBurger);
         } else if (operation.equals("2")) {
             foodList.deleteFood(cola);
@@ -101,19 +107,22 @@ public class ReserveAPP {
         separatorLine();
     }
 
+    //EFFECTS: check the reserve list.
     private void doCheckList() {
         showList();
         separatorLine();
     }
 
+    //EFFECTS: show the whole list.
     private void showList() {
         showFoodList(foodList.getList());
-        System.out.println("Total order num " + foodList.getTotalOrderNum());
-        System.out.println("Total price $" + foodList.getTotalPrice());
-        System.out.println("Reserve Time " + foodList.getTime());
+        System.out.println("Total order num: " + foodList.getTotalOrderNum());
+        System.out.println("Total price: $" + foodList.getTotalPrice());
+        System.out.println("Reserve Time: " + foodList.getTime());
         separatorLine();
     }
 
+    //EFFECTS: show the food part reserve list.
     private void showFoodList(ArrayList<Food> foodList) {
         System.out.println("Reserve List");
         for (Food f : foodList) {
@@ -122,7 +131,8 @@ public class ReserveAPP {
 
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: show set reserve time options.
     private void doSetTime() {
         foodList.getTime();
         System.out.println("Enter the time you want to reserve, eg( XX:XX)");
@@ -131,6 +141,8 @@ public class ReserveAPP {
         foodList.setTime(time);
     }
 
+
+    //EFFECTS: make separator line, make console base easier to check.
     private void separatorLine() {
         System.out.println("------------------------------------------------");
     }

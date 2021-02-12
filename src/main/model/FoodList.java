@@ -25,7 +25,7 @@ public class FoodList {
     }
 
     //Modify：this
-    //EFFECT: delete food form foodlist
+    //EFFECT: delete food form foodList
     public void deleteFood(Food f) {
         foodList.remove(f);
     }
@@ -59,6 +59,7 @@ public class FoodList {
         return foodList.contains(f);
     }
 
+    //EFFECT: get the reserve list's reserve time. If not set ,return "Not set yet"
 
     public String getTime() {
 
@@ -67,14 +68,16 @@ public class FoodList {
         } else {
             return reserveTime;
         }
-
-
     }
 
+    //MODIFIES: this
+    //EFFECTS: set the reserve time.
     public void setTime(String time) {
         reserveTime = time;
     }
 
+
+    //EFFECTS: get the list of reserve list.
     public ArrayList<Food> getList() {
         return foodList;
     }
