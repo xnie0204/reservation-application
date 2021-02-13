@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class testFood {
+public class TestFood {
     private Food BurgerA;
     private Food BurgerB;
 
@@ -25,26 +25,26 @@ class testFood {
     }
 
     @Test
-    public void testSetPrice(){
-        assertEquals(8,BurgerA.getPrice());
-        assertEquals("BeefBurger",BurgerA.getName());
+    public void testSetPrice() {
+        assertEquals(8, BurgerA.getPrice());
+        assertEquals("BeefBurger", BurgerA.getName());
 
         BurgerA.setPrice(10);
-        assertEquals(10,BurgerA.getPrice());
-        assertEquals("BeefBurger",BurgerA.getName());
+        assertEquals(10, BurgerA.getPrice());
+        assertEquals("BeefBurger", BurgerA.getName());
 
         BurgerA.setPrice(-10);
-        assertEquals(10000000,BurgerA.getPrice());
+        assertEquals(10000000, BurgerA.getPrice());
     }
 
     @Test
-    public void testSetName(){
-        assertEquals("BeefBurger",BurgerA.getName());
-        assertEquals(8,BurgerA.getPrice());
+    public void testSetName() {
+        assertEquals("BeefBurger", BurgerA.getName());
+        assertEquals(8, BurgerA.getPrice());
 
 
         BurgerA.setName("SuperBurger");
-        assertEquals("SuperBurger",BurgerA.getName());
-        assertEquals(8,BurgerA.getPrice());
+        assertEquals("SuperBurger", BurgerA.getName());
+        assertEquals(8, BurgerA.getPrice());
     }
 }
