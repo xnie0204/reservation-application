@@ -51,6 +51,7 @@ public class ReserveAPP {
         }
     }
 
+    //EFFECT: show the choice you can choose in menu.
     private void menuSelection() {
         System.out.println(" Please select an option");
         System.out.println("[1] Add food to your reserve list");
