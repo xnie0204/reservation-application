@@ -28,16 +28,9 @@ public class ReserveAPP {
     //EFFECTS: displays menu of options to user
     public void runReserveApp() {
         foodList = new FoodList();
-
         String operation = "";
-
-
         while (true) {
-            System.out.println(" Please select an option");
-            System.out.println("[1] Add food to your reserve list");
-            System.out.println("[2] Delete food from your reserve list");
-            System.out.println("[3] Check your current reserve list");
-            System.out.println("[4] set or change your reserve time");
+            menuSelection();
             operation = scanner.nextLine();
 
             if (operation.equals("1")) {
@@ -48,12 +41,25 @@ public class ReserveAPP {
                 doCheckList();
             } else if (operation.equals("4")) {
                 doSetTime();
+            } else if (operation.equals("5")) {
+                System.out.println("Thank you for your using,see you");
+                break;
             } else {
                 System.out.println("Selection not valid...");
             }
             separatorLine();
         }
     }
+
+    private void menuSelection() {
+        System.out.println(" Please select an option");
+        System.out.println("[1] Add food to your reserve list");
+        System.out.println("[2] Delete food from your reserve list");
+        System.out.println("[3] Check your current reserve list");
+        System.out.println("[4] set or change your reserve time");
+        System.out.println("[5]quit APP");
+    }
+
 
     //MODIFIES: this.
     // EFFECTS: show and add food options to user
