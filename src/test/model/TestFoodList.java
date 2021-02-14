@@ -66,13 +66,20 @@ public class TestFoodList {
 
     @Test
     public void testSetTime(){
-        assertEquals("Not set yet",foodList.getTime());
+        assertEquals("Not set yet" ,foodList.getTime());
 
         foodList.setTime("12:00");
         assertEquals("12:00",foodList.getTime());
+
+        foodList.setTime("HAHAHAAHHA");
+        assertEquals("please set again",foodList.getTime());
     }
 
-
+    @Test
+    public void testChangeToDataForm(){
+        assertTrue(foodList.changeToDataForm("12:00"));
+        assertFalse(foodList.changeToDataForm("??????"));
+    }
     }
 
 

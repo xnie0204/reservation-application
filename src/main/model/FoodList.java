@@ -1,10 +1,11 @@
 package model;
 
 
-import javafx.util.converter.LocalDateTimeStringConverter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // Represents a list of food
 public class FoodList {
@@ -62,7 +63,6 @@ public class FoodList {
     //EFFECT: get the reserve list's reserve time. If not set ,return "Not set yet"
 
     public String getTime() {
-
         if (reserveTime == null) {
             return "Not set yet";
         } else {
@@ -73,7 +73,24 @@ public class FoodList {
     //MODIFIES: this
     //EFFECTS: set the reserve time.
     public void setTime(String time) {
-        reserveTime = time;
+        if (changeToDataForm(time)) {
+            reserveTime = time;
+        } else {
+            reserveTime = "please set again";
+        }
+
+    }
+
+    //EFFECTS: change the reserve time to data format, and refuse the no legal data format.
+    public boolean changeToDataForm(String time) {
+        DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+        try {
+            timeFormat.parse(time);
+            return true;
+        } catch (ParseException p) {
+            System.out.println("invalid time format,set again");
+            return false;
+        }
     }
 
 
