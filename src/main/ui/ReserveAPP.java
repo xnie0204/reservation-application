@@ -3,6 +3,7 @@ package ui;
 import model.Food;
 import model.FoodList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class ReserveAPP {
 
 
     //EFFECTS :  Run the APP.
-    public ReserveAPP() {
+    public ReserveAPP() throws IOException {
         foodList = new FoodList();
         beefBurger = new Food("BeefBurger", 8);
         cola = new Food("cola", 1);
@@ -26,8 +27,9 @@ public class ReserveAPP {
     }
 
     //EFFECTS: displays menu of options to user
-    public void runReserveApp() {
+    public void runReserveApp() throws IOException {
         foodList = new FoodList();
+        foodList.load();
         String operation = "";
         while (true) {
             menuSelection();
@@ -42,6 +44,7 @@ public class ReserveAPP {
             } else if (operation.equals("4")) {
                 doSetTime();
             } else if (operation.equals("5")) {
+                foodList.save();
                 System.out.println("Thank you for your using,see you");
                 break;
             } else {
@@ -58,7 +61,7 @@ public class ReserveAPP {
         System.out.println("[2] Delete food from your reserve list");
         System.out.println("[3] Check your current reserve list");
         System.out.println("[4] set or change your reserve time");
-        System.out.println("[5]quit APP");
+        System.out.println("[5]save and quit APP");
     }
 
 
