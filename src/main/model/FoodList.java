@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import persistence.Loadable;
 import persistence.Saveable;
+import persistence.TimeLoad;
 import persistence.TimeSave;
 
 import java.io.IOException;
@@ -17,14 +18,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 // Represents a list of food
-public class FoodList implements Loadable, Saveable, TimeSave {
+public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     private ArrayList<Food> foodList;
     private String reserveTime;
     private int totalPrice;
     private int totalOrderNum;
     public static final String myFile = "src/data/myFile.txt";
+    public static final String timeFile = "src/data/timeFile.txt";
 
     // EFFECTS: set is empty
     public FoodList() {
@@ -113,7 +116,7 @@ public class FoodList implements Loadable, Saveable, TimeSave {
 
 
     @Override
-    public void load()  {
+    public void load() {
         try {
             List<String> foodTxt = Files.readAllLines(Paths.get(myFile));
             String foodTxtString = foodTxt.get(0);
@@ -132,7 +135,7 @@ public class FoodList implements Loadable, Saveable, TimeSave {
 
 
     @Override
-    public void save()  {
+    public void save() {
         try {
             PrintWriter printWriter = new PrintWriter(myFile, "UTF-8");
             ArrayList<JSONObject> jsonObjects = new ArrayList<>();
@@ -154,7 +157,20 @@ public class FoodList implements Loadable, Saveable, TimeSave {
 
     @Override
     public void saveTime() throws IOException {
-        PrintWriter printWriter = new PrintWriter(myFile, "UTF-8");
+        PrintWriter printWriter = new PrintWriter(timeFile, "UTF-8");
+        printWriter.println(getTime());
+        printWriter.close();
+    }
 
+    @Override
+    public void loadTime()  {
+        try {
+            Stream<String> timeData = Files.lines(Paths.get(timeFile));
+            String timeString = timeData.toString();
+            setTime(timeString);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }
+

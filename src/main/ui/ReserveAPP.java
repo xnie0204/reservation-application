@@ -23,18 +23,17 @@ public class ReserveAPP {
         cola = new Food("cola", 1);
         superBurger = new Food("superBurger", 10);
         scanner = new Scanner(System.in);
+        foodList.load();
+        foodList.loadTime();
         runReserveApp();
     }
 
     //EFFECTS: displays menu of options to user
     public void runReserveApp() throws IOException {
-        foodList = new FoodList();
-        foodList.load();
         String operation = "";
         while (true) {
             menuSelection();
             operation = scanner.nextLine();
-
             if (operation.equals("1")) {
                 doAddFood();
             } else if (operation.equals("2")) {
@@ -44,14 +43,19 @@ public class ReserveAPP {
             } else if (operation.equals("4")) {
                 doSetTime();
             } else if (operation.equals("5")) {
-                foodList.save();
-                System.out.println("Thank you for your using,see you");
+                saveAll();
                 break;
             } else {
                 System.out.println("Selection not valid...");
             }
             separatorLine();
         }
+    }
+
+    private void saveAll() throws IOException {
+        foodList.save();
+        foodList.saveTime();
+        System.out.println("Thank you for your using,see you");
     }
 
     //EFFECT: show the choice you can choose in menu.
