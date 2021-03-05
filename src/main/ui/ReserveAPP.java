@@ -32,6 +32,7 @@ public class ReserveAPP {
     public void runReserveApp() throws IOException {
         String operation = "";
         while (true) {
+            saveAll();
             menuSelection();
             operation = scanner.nextLine();
             if (operation.equals("1")) {
@@ -43,7 +44,7 @@ public class ReserveAPP {
             } else if (operation.equals("4")) {
                 doSetTime();
             } else if (operation.equals("5")) {
-                saveAll();
+                System.out.println("Thank you for your using,see you");
                 break;
             } else {
                 System.out.println("Selection not valid...");
@@ -55,7 +56,6 @@ public class ReserveAPP {
     private void saveAll() throws IOException {
         foodList.save();
         foodList.saveTime();
-        System.out.println("Thank you for your using,see you");
     }
 
     //EFFECT: show the choice you can choose in menu.

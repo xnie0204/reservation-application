@@ -163,9 +163,11 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     }
 
     @Override
-    public void loadTime()  {
+    public void loadTime() {
         try {
-            Stream<String> timeData = Files.lines(Paths.get(timeFile));
+            Stream<String> stringStream = Files.lines(Paths.get(timeFile));
+            StringBuilder timeData = new StringBuilder();
+            stringStream.forEach(s -> timeData.append(s));
             String timeString = timeData.toString();
             setTime(timeString);
         } catch (IOException ioException) {
