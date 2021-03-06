@@ -142,7 +142,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
 
     //EFFECTS: save the food list to save file(myFile)
     @Override
-    public void save(String destination) throws FileNotFoundException {
+    public void save(String destination) {
         try {
             PrintWriter printWriter = new PrintWriter(destination, "UTF-8");
             ArrayList<JSONObject> jsonObjects = new ArrayList<>();
@@ -171,16 +171,14 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
 
     //EFFECTS: load reserve time from save file(timeFile)
     @Override
-    public void loadTime(String destination) {
-        try {
-            Stream<String> stringStream = Files.lines(Paths.get(destination));
-            StringBuilder timeData = new StringBuilder();
-            stringStream.forEach(s -> timeData.append(s));
-            String timeString = timeData.toString();
-            setTime(timeString);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
+    public void loadTime(String destination) throws IOException {
+
+        Stream<String> stringStream = Files.lines(Paths.get(destination));
+        StringBuilder timeData = new StringBuilder();
+        stringStream.forEach(s -> timeData.append(s));
+        String timeString = timeData.toString();
+        setTime(timeString);
+
     }
 
     //MODIFIES: this, myFile

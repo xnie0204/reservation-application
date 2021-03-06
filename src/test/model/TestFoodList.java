@@ -149,6 +149,18 @@ public class TestFoodList extends JsonTest{
     }
 
     @Test
+    public void testLoadInvaildFile(){
+        try{
+            FoodList testFoodList = new FoodList();
+            testFoodList.load("./data/my\0illegal:fileName.json");
+            fail("IOException was expected");
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    @Test
     public void testSaveNoSetTime(){
         try{
             foodList.saveTime(FoodList.timeFile);
@@ -179,7 +191,53 @@ public class TestFoodList extends JsonTest{
         }
     }
 
+    @Test
+    public void testSaveInvalidTime(){
+        try {
+            foodList.setTime("12:00");
+            foodList.saveTime("./data/my\0illegal:fileName.json");
+            PrintWriter writer = new PrintWriter(new File("./data/my\0illegal:fileName.json"));
 
+            fail("IOException was expected");
+        } catch (IOException e){
+        }
+    }
+
+    @Test
+    public void testLoadTime()  {
+        try {
+            foodList.setTime("12:00");
+            foodList.saveTime(FoodList.timeFile);
+            FoodList testFoodList = new FoodList();
+            testFoodList.loadTime(FoodList.timeFile);
+            assertEquals("12:00",testFoodList.getTime());
+        } catch (IOException e){
+            fail("can't load time");
+        }
+    }
+
+    @Test
+    public void testLoadEmptyTime(){
+        try {
+
+            FoodList testFoodList = new FoodList();
+            testFoodList.loadTime("src/data/testblank.txt");
+            assertEquals("please set again",testFoodList.getTime());
+        } catch (IOException e){
+            fail("can't load time");
+        }
+    }
+
+    @Test
+    public void testLoadInvalidFileTime(){
+        try {
+            FoodList testFoodList = new FoodList();
+            testFoodList.loadTime(FoodList.myFile);
+            assertEquals("please set again",testFoodList.getTime());
+        } catch (IOException e){
+            fail("can't load time");
+        }
+    }
     }
 
 

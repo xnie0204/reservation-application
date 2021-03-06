@@ -6,8 +6,8 @@ public class Food {
     private int price;
 
     //REQUIRES: burgerName has a non-zero length
-     //            burgerPrice >= 0
-     // EFFECTS: name and price on burger is set to burgerName and burgerPrice;
+    //            burgerPrice >= 0
+    // EFFECTS: name and price on burger is set to burgerName and burgerPrice;
     public Food(String foodName, int foodPrice) {
         this.name = foodName;
         this.price = foodPrice;
