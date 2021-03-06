@@ -8,6 +8,7 @@ import persistence.Saveable;
 import persistence.TimeLoad;
 import persistence.TimeSave;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -122,9 +123,9 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     //MODIFIES: this
     //EFFECTS: load the content from the save file(myFile)
     @Override
-    public void load() {
+    public void load(String destination) {
         try {
-            List<String> foodTxt = Files.readAllLines(Paths.get(myFile));
+            List<String> foodTxt = Files.readAllLines(Paths.get(destination));
             String foodTxtString = foodTxt.get(0);
             JSONArray jsonArray = new JSONArray(foodTxtString);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -141,9 +142,9 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
 
     //EFFECTS: save the food list to save file(myFile)
     @Override
-    public void save() {
+    public void save(String destination) throws FileNotFoundException {
         try {
-            PrintWriter printWriter = new PrintWriter(myFile, "UTF-8");
+            PrintWriter printWriter = new PrintWriter(destination, "UTF-8");
             ArrayList<JSONObject> jsonObjects = new ArrayList<>();
             for (Food f : foodList) {
                 JSONObject jsonObject = new JSONObject();
@@ -162,17 +163,17 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
 
     //EFFECTS: save reserve time to save file(timeFile)
     @Override
-    public void saveTime() throws IOException {
-        PrintWriter printWriter = new PrintWriter(timeFile, "UTF-8");
+    public void saveTime(String destination) throws IOException {
+        PrintWriter printWriter = new PrintWriter(destination, "UTF-8");
         printWriter.println(getTime());
         printWriter.close();
     }
 
     //EFFECTS: load reserve time from save file(timeFile)
     @Override
-    public void loadTime() {
+    public void loadTime(String destination) {
         try {
-            Stream<String> stringStream = Files.lines(Paths.get(timeFile));
+            Stream<String> stringStream = Files.lines(Paths.get(destination));
             StringBuilder timeData = new StringBuilder();
             stringStream.forEach(s -> timeData.append(s));
             String timeString = timeData.toString();
@@ -187,6 +188,15 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     public void clearAll() {
         clearSaveFileFile();
         foodList.clear();
+    }
+
+    //EFFECTS: show the given index food.
+    public Food getFood(int index) {
+        if ((index >= 0) && (index < foodList.size())) {
+            return foodList.get(index);
+        } else {
+            return null;
+        }
     }
 }
 

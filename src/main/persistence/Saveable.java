@@ -3,5 +3,5 @@ package persistence;
 import java.io.IOException;
 
 public interface Saveable {
-    void save() throws IOException;
+    void save(String destination) throws IOException;
 }

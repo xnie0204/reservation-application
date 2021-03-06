@@ -24,8 +24,8 @@ public class ReserveAPP {
         superBurger = new Food("superBurger", 10);
         scanner = new Scanner(System.in);
         foodList = new FoodList();
-        foodList.load();
-        foodList.loadTime();
+        foodList.load(FoodList.myFile);
+        foodList.loadTime(FoodList.timeFile);
         runReserveApp();
     }
 
@@ -56,8 +56,8 @@ public class ReserveAPP {
     }
 
     private void saveAll() throws IOException {
-        foodList.save();
-        foodList.saveTime();
+        foodList.save(FoodList.myFile);
+        foodList.saveTime(FoodList.timeFile);
     }
 
     //EFFECT: show the choice you can choose in menu.
