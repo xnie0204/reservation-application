@@ -18,11 +18,12 @@ public class ReserveAPP {
 
     //EFFECTS :  Run the APP.
     public ReserveAPP() throws IOException {
-        foodList = new FoodList();
+
         beefBurger = new Food("BeefBurger", 8);
         cola = new Food("cola", 1);
         superBurger = new Food("superBurger", 10);
         scanner = new Scanner(System.in);
+        foodList = new FoodList();
         foodList.load();
         foodList.loadTime();
         runReserveApp();
@@ -47,6 +48,7 @@ public class ReserveAPP {
                 System.out.println("Thank you for your using,see you");
                 break;
             } else {
+
                 System.out.println("Selection not valid...");
             }
             separatorLine();

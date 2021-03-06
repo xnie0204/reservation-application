@@ -126,7 +126,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
                 String name = jsonObject.getString("name");
                 String price = jsonObject.getString("price");
                 int priceNum = Integer.parseInt(price);
-                foodList.add(new Food(name, priceNum));
+                addFood(new Food(name, priceNum));
             }
         } catch (IOException e) {
             System.out.println("Encountered IOException while loading food list.");
@@ -147,7 +147,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
                 jsonObjects.add(jsonObject);
             }
             JSONArray jsonArray = new JSONArray(jsonObjects);
-            printWriter.println(jsonArray);
+            printWriter.println(jsonArray.toString());
             printWriter.close();
         } catch (IOException e) {
             System.out.println("Encountered IOException while saving food list.");
