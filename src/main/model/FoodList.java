@@ -40,17 +40,11 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         foodList.add(f);
     }
 
-    //Modify：this
-    //EFFECT: delete food form foodList
-    public void deleteFood(Food f) {
-        foodList.remove(f);
-
-    }
 
     public void clearSaveFileFile() {
         try {
-            PrintWriter writer = new PrintWriter(myFile,"UTF-8");
-            writer.print("");
+            PrintWriter writer = new PrintWriter(myFile, "UTF-8");
+            writer.print("[]");
             writer.close();
         } catch (IOException e) {
             System.out.println("Encountered IOException while saving todo list.");
@@ -125,7 +119,8 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         return foodList;
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: load the content from the save file(myFile)
     @Override
     public void load() {
         try {
@@ -144,7 +139,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         }
     }
 
-
+    //EFFECTS: save the food list to save file(myFile)
     @Override
     public void save() {
         try {
@@ -165,7 +160,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         }
     }
 
-
+    //EFFECTS: save reserve time to save file(timeFile)
     @Override
     public void saveTime() throws IOException {
         PrintWriter printWriter = new PrintWriter(timeFile, "UTF-8");
@@ -173,6 +168,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         printWriter.close();
     }
 
+    //EFFECTS: load reserve time from save file(timeFile)
     @Override
     public void loadTime() {
         try {
@@ -184,6 +180,13 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    //MODIFIES: this, myFile
+    //EFFECTS: clear all the food concluding myFile and food list
+    public void clearAll() {
+        clearSaveFileFile();
+        foodList.clear();
     }
 }
 

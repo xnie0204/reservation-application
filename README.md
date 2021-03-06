@@ -19,7 +19,7 @@ customers' some time and reduce the stress of clerks*
 - As a user, I want to be able to add  a burger to my reserve list.
 - As a user,  I want to be able to view the list of food on my reserve list.
 - As a user, I want to be able to set a time that I want to get my food.
-- As a user, I want to be able to delete food from my food-list.
+- As a user, I want to be able to clear all food from my food-list.
 - As a user, I want to be able to see the number of food and how much to pay on my 
 reserve list.
 - As a user, I want to be able to save my to-do list to file.

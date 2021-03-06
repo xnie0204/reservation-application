@@ -33,22 +33,22 @@ public class ReserveAPP {
     public void runReserveApp() throws IOException {
         String operation = "";
         while (true) {
-            saveAll();
             menuSelection();
             operation = scanner.nextLine();
             if (operation.equals("1")) {
                 doAddFood();
             } else if (operation.equals("2")) {
-                doDeletFood();
+                foodList.clearAll();
+                System.out.println("clear all the food");
             } else if (operation.equals("3")) {
                 doCheckList();
             } else if (operation.equals("4")) {
                 doSetTime();
             } else if (operation.equals("5")) {
+                saveAll();
                 System.out.println("Thank you for your using,see you");
                 break;
             } else {
-
                 System.out.println("Selection not valid...");
             }
             separatorLine();
@@ -64,7 +64,7 @@ public class ReserveAPP {
     private void menuSelection() {
         System.out.println(" Please select an option");
         System.out.println("[1] Add food to your reserve list");
-        System.out.println("[2] Delete food from your reserve list");
+        System.out.println("[2] Clear all food from your reserve list");
         System.out.println("[3] Check your current reserve list");
         System.out.println("[4] set or change your reserve time");
         System.out.println("[5]save and quit APP");
@@ -98,30 +98,8 @@ public class ReserveAPP {
         separatorLine();
     }
 
-    //MODIFIES: this.
-    // EFFECTS: show and delete food options to user
-    private void doDeletFood() {
-        String operation = "";
-        separatorLine();
-        showList();
-        separatorLine();
-        System.out.println("Please select the food you want to delete");
-        System.out.println("[1] Beef Burger($8)");
-        System.out.println("[2] Cola($1)");
-        System.out.println("[3] Super Burger($10)");
 
-        operation = scanner.nextLine();
-        if (operation.equals("1")) {
-            foodList.deleteFood(beefBurger);
-        } else if (operation.equals("2")) {
-            foodList.deleteFood(cola);
-        } else if (operation.equals("3")) {
-            foodList.deleteFood(superBurger);
-        } else {
-            System.out.println("Selection not valid...");
-        }
-        separatorLine();
-    }
+
 
     //EFFECTS: check the reserve list.
     private void doCheckList() {

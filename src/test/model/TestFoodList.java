@@ -33,18 +33,6 @@ public class TestFoodList {
         assertTrue(foodList.contain(cola));
     }
 
-    @Test
-    public void testDeleteFood(){
-        assertFalse(foodList.contain(cola));
-
-        foodList.addFood(cola);
-        foodList.addFood(beefBurger);
-        assertEquals(2,foodList.size());
-        foodList.deleteFood(cola);
-        assertEquals(1,foodList.size());
-        assertFalse(foodList.contain(cola));
-
-    }
 
     @Test
     public void testGetTotalPrice(){
@@ -80,6 +68,9 @@ public class TestFoodList {
         assertTrue(foodList.changeToDataForm("12:00"));
         assertFalse(foodList.changeToDataForm("??????"));
     }
+
+    @Test
+
     }
 
 
