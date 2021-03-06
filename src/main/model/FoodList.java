@@ -44,6 +44,17 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     //EFFECT: delete food form foodList
     public void deleteFood(Food f) {
         foodList.remove(f);
+
+    }
+
+    public void clearSaveFileFile() {
+        try {
+            PrintWriter writer = new PrintWriter(myFile,"UTF-8");
+            writer.print("");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Encountered IOException while saving todo list.");
+        }
     }
 
     //REQUIRES:totalPrice can't less than 0.
