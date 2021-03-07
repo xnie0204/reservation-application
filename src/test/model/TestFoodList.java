@@ -148,13 +148,13 @@ public class TestFoodList extends JsonTest {
     }
 
     @Test
-    public void testLoadInvaildFile() {
+    public void testLoadNoExitedFile(){
         try {
             FoodList testFoodList = new FoodList();
-            testFoodList.load("./data/my\0illegal:fileName.json");
+            testFoodList.load("");
+            PrintWriter writer = new PrintWriter(new File(""));
             fail("IOException was expected");
-        } catch (Exception e) {
-
+        } catch (IOException e) {
         }
 
     }
@@ -198,7 +198,7 @@ public class TestFoodList extends JsonTest {
             PrintWriter writer = new PrintWriter(new File("./data/my\0illegal:fileName.json"));
 
             fail("IOException was expected");
-        } catch (IOException e) {
+        } catch (IOException e) {//pase
         }
     }
 
@@ -238,16 +238,6 @@ public class TestFoodList extends JsonTest {
         }
     }
 
-    @Test
-    public void testLoadNoExitedTime() {
-        try {
-            FoodList testFoodList = new FoodList();
-            testFoodList.loadTime("./data/my\0illegal:fileName.json");
-            fail("IOException was expected");
-        } catch (Exception e) {
-
-        }
-    }
 
     @Test
     public void testClearAll() {
@@ -281,7 +271,7 @@ public class TestFoodList extends JsonTest {
         foodList.addFood(cola);
         foodList.addFood(beefBurger);
         foodList.save(FoodList.myFile);
-        foodList.clearSaveFileFile();
+        foodList.clearSaveFileFile(FoodList.myFile);
         List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
         String stringTxt = lines.get(0);
         String assumeTxt = "[]";
@@ -291,6 +281,15 @@ public class TestFoodList extends JsonTest {
     }
 
 }
+    @Test
+    public void testClearInvalidSaveFile(){
+        try{
+            foodList.clearSaveFileFile("./data/my\0illegal:fileName.json");
+            PrintWriter writer = new PrintWriter(new File("./data/my\0illegal:fileName.json"));
+            fail("IOException was expected");
+        } catch (Exception e) {
+        }
+    }
 }
 
 

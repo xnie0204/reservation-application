@@ -8,11 +8,9 @@ import persistence.Saveable;
 import persistence.TimeLoad;
 import persistence.TimeSave;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -42,9 +40,9 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     }
 
 
-    public void clearSaveFileFile() {
+    public void clearSaveFileFile(String destination) {
         try {
-            PrintWriter writer = new PrintWriter(myFile, "UTF-8");
+            PrintWriter writer = new PrintWriter(destination, "UTF-8");
             writer.print("[]");
             writer.close();
         } catch (IOException e) {
@@ -183,7 +181,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     //MODIFIES: this, myFile
     //EFFECTS: clear all the food concluding myFile and food list
     public void clearAll() {
-        clearSaveFileFile();
+        clearSaveFileFile(myFile);
         foodList.clear();
     }
 
