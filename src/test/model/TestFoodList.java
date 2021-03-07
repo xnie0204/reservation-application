@@ -1,11 +1,9 @@
 package model;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -80,7 +78,7 @@ public class TestFoodList extends JsonTest {
     }
 
     @Test
-    public void testSaveSuccesfullyInRightFile() throws FileNotFoundException {
+    public void testSaveSuccesfullyInRightFile() {
         foodList.addFood(cola);
         foodList.addFood(beefBurger);
         foodList.save(FoodList.myFile);
@@ -241,6 +239,17 @@ public class TestFoodList extends JsonTest {
     }
 
     @Test
+    public void testLoadNoExitedTime() {
+        try {
+            FoodList testFoodList = new FoodList();
+            testFoodList.loadTime("./data/my\0illegal:fileName.json");
+            fail("IOException was expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
     public void testClearAll() {
         foodList.addFood(cola);
         foodList.addFood(beefBurger);
@@ -256,6 +265,32 @@ public class TestFoodList extends JsonTest {
             fail("clear all false");
         }
     }
+
+    @Test
+    public void testGetFood() {
+        foodList.addFood(cola);
+        foodList.addFood(beefBurger);
+        assertEquals(cola, foodList.getFood(0));
+        assertEquals(null, foodList.getFood(-1));
+        assertEquals(null, foodList.getFood(3));
+    }
+
+    @Test
+    public void testClearSaveFileFile() {
+        try{
+        foodList.addFood(cola);
+        foodList.addFood(beefBurger);
+        foodList.save(FoodList.myFile);
+        foodList.clearSaveFileFile();
+        List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
+        String stringTxt = lines.get(0);
+        String assumeTxt = "[]";
+        assertEquals(assumeTxt, stringTxt);
+    }catch(IOException e){
+        fail("clear all false");
+    }
+
+}
 }
 
 

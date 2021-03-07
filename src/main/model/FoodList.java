@@ -48,7 +48,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
             writer.print("[]");
             writer.close();
         } catch (IOException e) {
-            System.out.println("Encountered IOException while saving todo list.");
+            System.out.println("Encountered IOException while clear saving todo list.");
         }
     }
 
@@ -178,7 +178,6 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
         stringStream.forEach(s -> timeData.append(s));
         String timeString = timeData.toString();
         setTime(timeString);
-
     }
 
     //MODIFIES: this, myFile
