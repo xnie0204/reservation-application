@@ -25,7 +25,7 @@ public class ReserveAPP {
         scanner = new Scanner(System.in);
         foodList = new FoodList();
         foodList.load(FoodList.myFile);
-        foodList.loadTime(FoodList.timeFile);
+
         runReserveApp();
     }
 
@@ -57,7 +57,7 @@ public class ReserveAPP {
 
     private void saveAll() throws IOException {
         foodList.save(FoodList.myFile);
-        foodList.saveTime(FoodList.timeFile);
+
     }
 
     //EFFECT: show the choice you can choose in menu.
@@ -97,8 +97,6 @@ public class ReserveAPP {
         }
         separatorLine();
     }
-
-
 
 
     //EFFECTS: check the reserve list.

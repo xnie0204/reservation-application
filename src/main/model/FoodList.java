@@ -5,8 +5,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import persistence.Loadable;
 import persistence.Saveable;
-import persistence.TimeLoad;
-import persistence.TimeSave;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +19,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 // Represents a list of food
-public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
+public class FoodList implements Loadable, Saveable {
     private ArrayList<Food> foodList;
     private String reserveTime;
     private int totalPrice;
@@ -124,8 +123,15 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     public void load(String destination) {
         try {
             List<String> foodTxt = Files.readAllLines(Paths.get(destination));
-            String foodTxtString = foodTxt.get(0);
-            JSONArray jsonArray = new JSONArray(foodTxtString);
+            String foodTxtString = "";
+            for (String str : foodTxt) {
+                foodTxtString = foodTxtString + str;
+            }
+            JSONObject object = new JSONObject(foodTxtString);
+            JSONArray jsonArray = object.getJSONArray("foods");
+            String reserveTime = object.optString("reserve time");
+            this.reserveTime = reserveTime;
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.getString("name");
@@ -151,8 +157,11 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
                 jsonObject.put("price", priceString);
                 jsonObjects.add(jsonObject);
             }
+            JSONObject jsonObject = new JSONObject();
             JSONArray jsonArray = new JSONArray(jsonObjects);
-            printWriter.println(jsonArray.toString());
+            jsonObject.put("foods",jsonArray);
+            jsonObject.put("reserve time",reserveTime);
+            printWriter.println(jsonObject.toString());
             printWriter.close();
         } catch (IOException e) {
             System.out.println("Encountered IOException while saving food list.");
@@ -160,23 +169,7 @@ public class FoodList implements Loadable, Saveable, TimeSave, TimeLoad {
     }
 
     //EFFECTS: save reserve time to save file(timeFile)
-    @Override
-    public void saveTime(String destination) throws IOException {
-        PrintWriter printWriter = new PrintWriter(destination, "UTF-8");
-        printWriter.println(getTime());
-        printWriter.close();
-    }
 
-    //EFFECTS: load reserve time from save file(timeFile)
-    @Override
-    public void loadTime(String destination) throws IOException {
-
-        Stream<String> stringStream = Files.lines(Paths.get(destination));
-        StringBuilder timeData = new StringBuilder();
-        stringStream.forEach(s -> timeData.append(s));
-        String timeString = timeData.toString();
-        setTime(timeString);
-    }
 
     //MODIFIES: this, myFile
     //EFFECTS: clear all the food concluding myFile and food list

@@ -85,7 +85,7 @@ public class TestFoodList extends JsonTest {
         try {
             List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
             String stringTxt = lines.get(0);
-            String assumeTxt = "[{\"price\":\"1\",\"name\":\"cola\"},{\"price\":\"8\",\"name\":\"BeefBurger\"}]";
+            String assumeTxt = "{\"foods\":[{\"price\":\"1\",\"name\":\"cola\"},{\"price\":\"8\",\"name\":\"BeefBurger\"}]}";
             assertEquals(assumeTxt, stringTxt);
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -128,7 +128,7 @@ public class TestFoodList extends JsonTest {
             foodList.save(FoodList.myFile);
             List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
             String stringTxt = lines.get(0);
-            String assumeTxt = "[]";
+            String assumeTxt = "{\"foods\":[]}";
             assertEquals(assumeTxt, stringTxt);
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -159,84 +159,7 @@ public class TestFoodList extends JsonTest {
 
     }
 
-    @Test
-    public void testSaveNoSetTime() {
-        try {
-            foodList.saveTime(FoodList.timeFile);
-            Stream<String> stringStream = Files.lines(Paths.get(foodList.timeFile));
-            StringBuilder timeData = new StringBuilder();
-            stringStream.forEach(s -> timeData.append(s));
-            String timeString = timeData.toString();
-            String timeAssum = "Not set yet";
-            assertEquals(timeAssum, timeString);
-        } catch (IOException e) {
-            fail("can't save time");
-        }
-    }
 
-    @Test
-    public void testSaveSetTime() {
-        try {
-            foodList.setTime("12:00");
-            foodList.saveTime(FoodList.timeFile);
-            Stream<String> stringStream = Files.lines(Paths.get(foodList.timeFile));
-            StringBuilder timeData = new StringBuilder();
-            stringStream.forEach(s -> timeData.append(s));
-            String timeString = timeData.toString();
-            String timeAssum = "12:00";
-            assertEquals(timeAssum, timeString);
-        } catch (IOException e) {
-            fail("can't save time");
-        }
-    }
-
-    @Test
-    public void testSaveInvalidTime() {
-        try {
-            foodList.setTime("12:00");
-            foodList.saveTime("./data/my\0illegal:fileName.json");
-            PrintWriter writer = new PrintWriter(new File("./data/my\0illegal:fileName.json"));
-
-            fail("IOException was expected");
-        } catch (IOException e) {//pase
-        }
-    }
-
-    @Test
-    public void testLoadTime() {
-        try {
-            foodList.setTime("12:00");
-            foodList.saveTime(FoodList.timeFile);
-            FoodList testFoodList = new FoodList();
-            testFoodList.loadTime(FoodList.timeFile);
-            assertEquals("12:00", testFoodList.getTime());
-        } catch (IOException e) {
-            fail("can't load time");
-        }
-    }
-
-    @Test
-    public void testLoadEmptyTime() {
-        try {
-
-            FoodList testFoodList = new FoodList();
-            testFoodList.loadTime("src/data/testblank.txt");
-            assertEquals("please set again", testFoodList.getTime());
-        } catch (IOException e) {
-            fail("can't load time");
-        }
-    }
-
-    @Test
-    public void testLoadInvalidFileTime() {
-        try {
-            FoodList testFoodList = new FoodList();
-            testFoodList.loadTime(FoodList.myFile);
-            assertEquals("please set again", testFoodList.getTime());
-        } catch (IOException e) {
-            fail("can't load time");
-        }
-    }
 
 
     @Test
