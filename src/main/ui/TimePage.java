@@ -14,7 +14,7 @@ public class TimePage extends JFrame implements ActionListener {
     private JTextField reserveTimeField;
     private String finishButtonString = "Finish";
 
-
+    //change reserve time
     public TimePage(FoodListPage foodListPage, FoodList foodList) {
         super("change time");
         this.foodList = foodList;
@@ -33,12 +33,7 @@ public class TimePage extends JFrame implements ActionListener {
         reserveTimeField.setBounds(50, 70, 300, 20);
         add(reserveTimeField);
 
-        JButton finishButton = new JButton(finishButtonString);
-        finishButton.setBounds(310, 210, 100, 20);
-        add(finishButton);
-        finishButton.setActionCommand(finishButtonString);
-        finishButton.addActionListener(this);
-        finishButton.setForeground(Color.darkGray);
+        addButton();
 
         pack();
         setLocationRelativeTo(null);
@@ -46,7 +41,18 @@ public class TimePage extends JFrame implements ActionListener {
         setResizable(false);
     }
 
+    //EFFECTS: add the button
+    private void addButton() {
+        JButton finishButton = new JButton(finishButtonString);
+        finishButton.setBounds(310, 210, 100, 20);
+        add(finishButton);
+        finishButton.setActionCommand(finishButtonString);
+        finishButton.addActionListener(this);
+        finishButton.setForeground(Color.darkGray);
+    }
 
+
+    //EFFECTS: option respond
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(finishButtonString)) {

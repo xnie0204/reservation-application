@@ -21,7 +21,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
     private String addSuperBurgerButton = "SuperBurger($10)";
     private JLabel background;
 
-
+   //set the add food page,
     public AddFoodPage(FoodListPage foodListPage, FoodList foodList) {
         super("Add Food Page");
         this.foodList = foodList;
@@ -47,6 +47,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
         setResizable(false);
     }
 
+    //EFFECTS: show the mouse action
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(addBeefBurgerButton)) {
@@ -67,15 +68,14 @@ public class AddFoodPage extends JFrame implements ActionListener {
     }
 
 
-
-
-
+    //EFFECTS: add the button.
     private void addButton() {
         creatButton(addBeefBurgerButton, 40);
         creatButton(addColaButton, 80);
         creatButton(addSuperBurgerButton, 120);
     }
 
+    //EFFECTS: creat the button
     private void creatButton(String string, int yposition) {
         JButton button = new JButton(string);
         button.setBounds(buttonPosition, yposition, buttonWidth, buttonHeight);
@@ -86,6 +86,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
 
     }
 
+    //EFFECTS: set the background.
     private void setBackground() {
         ImageIcon img = new ImageIcon("src/picture/P2.jpg");
         background = new JLabel("", img, JLabel.CENTER);

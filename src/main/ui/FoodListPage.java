@@ -18,7 +18,7 @@ public class FoodListPage extends JFrame implements ActionListener {
     private String timeButton = "change reserve time";
     private JLabel background;
 
-
+    //show the food list page
     public FoodListPage(FoodList foodList) {
         this.foodList = foodList;
 
@@ -42,6 +42,7 @@ public class FoodListPage extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    //EFFECTS: show the table of food list.
     private void showFoodList(FoodList foodList) {
         final String[] columnLabels = new String[]{
                 "Index", "Name", "Price",
@@ -65,6 +66,7 @@ public class FoodListPage extends JFrame implements ActionListener {
     }
 
 
+    //EFFECTS: create the button
     private void creatButton(String string) {
         JButton button = new JButton(string);
         //     button.setBounds(buttonPosition, yposition, buttonWidth, buttonHeight);
@@ -76,6 +78,7 @@ public class FoodListPage extends JFrame implements ActionListener {
     }
 
 
+    //EFFECTS: show the option respond.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(addButton)) {
