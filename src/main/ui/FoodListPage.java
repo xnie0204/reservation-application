@@ -15,6 +15,7 @@ public class FoodListPage extends JFrame implements ActionListener {
     private DefaultTableModel tableColumn;
     private JTable table;
     private String addButton = "Add Food";
+    private String timeButton = "change reserve time";
     private JLabel background;
 
 
@@ -30,7 +31,7 @@ public class FoodListPage extends JFrame implements ActionListener {
         add(new JScrollPane(table));
 
         creatButton(addButton);
-        creatButton();
+        creatButton(timeButton);
         showTotal();
 
 
@@ -79,10 +80,13 @@ public class FoodListPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(addButton)) {
             new AddFoodPage(this, foodList);
+        } else if (e.getActionCommand().equals(timeButton)) {
+            new TimePage(this,foodList);
         }
 
         foodList.save(FoodList.myFile);
         new FoodListPage(foodList);
+        dispose();
         dispose();
     }
 

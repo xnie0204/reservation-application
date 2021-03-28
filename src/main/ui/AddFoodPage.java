@@ -61,7 +61,6 @@ public class AddFoodPage extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "add successfully");
         foodList.save(FoodList.myFile);
 
-        //REFRESH
         foodListPage.dispose();
         new FoodListPage(foodList);
         dispose();
