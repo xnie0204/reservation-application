@@ -42,7 +42,7 @@ public class FoodList implements Loadable, Saveable {
     public void clearSaveFileFile(String destination) {
         try {
             PrintWriter writer = new PrintWriter(destination, "UTF-8");
-            writer.print("[]");
+            writer.print("{foods:[]}");
             writer.close();
         } catch (IOException e) {
             System.out.println("Encountered IOException while clear saving todo list.");

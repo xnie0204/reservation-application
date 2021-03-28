@@ -29,7 +29,7 @@ public class MainPage extends JFrame implements ActionListener {
     private FoodListPage foodListPage;
     private JLabel background;
 
-
+    //EFFECTS: main page of the app.
     public MainPage() {
         //set the size of main４５０
         super("Reserve Food Application");
@@ -60,6 +60,7 @@ public class MainPage extends JFrame implements ActionListener {
         setResizable(false);
     }
 
+    //EFFECTS: set the main page background.
     private void setBackground() {
         ImageIcon img = new ImageIcon("src/picture/background.jpg");
         background = new JLabel("", img, JLabel.CENTER);
