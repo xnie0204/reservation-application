@@ -19,6 +19,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
     private String addBeefBurgerButton = "BeefBurger($9)";
     private String addColaButton = "Cola($1)";
     private String addSuperBurgerButton = "SuperBurger($10)";
+    private JLabel background;
 
 
     public AddFoodPage(FoodListPage foodListPage, FoodList foodList) {
@@ -27,16 +28,17 @@ public class AddFoodPage extends JFrame implements ActionListener {
         this.foodListPage = foodListPage;
 
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setPreferredSize(new Dimension(600, 450));
+        setPreferredSize(new Dimension(450, 450));
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
         setLayout(null);
 
         label = new JLabel("Please select the food you want", JLabel.CENTER);
-        label.setBounds(80, 10, 300, 20);
+        label.setBounds(80, 10, 400, 20);
         add(label);
         label.setForeground(Color.darkGray);
 
         addButton();
+        setBackground();
 
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 
@@ -84,4 +86,13 @@ public class AddFoodPage extends JFrame implements ActionListener {
         button.setForeground(Color.black);
 
     }
+
+    private void setBackground() {
+        ImageIcon img = new ImageIcon("src/picture/P2.jpg");
+        background = new JLabel("", img, JLabel.CENTER);
+        background.setBounds(0, 0, 450, 450);
+        add(background);
+    }
+
+
 }

@@ -4,6 +4,7 @@ import model.Food;
 import model.FoodList;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,10 +21,29 @@ public class FoodListPage extends JFrame implements ActionListener {
     public FoodListPage(FoodList foodList) {
         this.foodList = foodList;
 
+        setPreferredSize(new Dimension(600, 600));
+        ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
+        setLayout(null);
+
+        showFoodList(foodList);
+
+        add(new JScrollPane(table));
+
+        creatButton(addButton);
+        creatButton();
+        showTotal();
+
+
+        setTitle("Current Food List");
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        pack();
+        setVisible(true);
+    }
+
+    private void showFoodList(FoodList foodList) {
         final String[] columnLabels = new String[]{
-                "Index",
-                "Name",
-                "Price",
+                "Index", "Name", "Price",
         };
 
 
@@ -41,18 +61,6 @@ public class FoodListPage extends JFrame implements ActionListener {
             };
             tableColumn.addRow(row);
         }
-
-        add(new JScrollPane(table));
-
-        creatButton(addButton);
-
-        //setBackground();
-
-        setTitle("Current Food List");
-        setLayout(new FlowLayout());
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        pack();
-        setVisible(true);
     }
 
 
@@ -76,5 +84,24 @@ public class FoodListPage extends JFrame implements ActionListener {
         foodList.save(FoodList.myFile);
         new FoodListPage(foodList);
         dispose();
+    }
+
+    //EFFECTS: show the total number, total price, reserve time.
+    public void showTotal() {
+        int totalPrice = foodList.getTotalPrice();
+        int totalNumber = foodList.getTotalOrderNum();
+        String reserveTime = foodList.getTime();
+        JLabel totalNumberLabel = new JLabel("Total Order Number: " + totalNumber);
+        totalNumberLabel.setBounds(10, 400, 500, 20);
+        add(totalNumberLabel);
+
+        JLabel totalPriceLabel = new JLabel("Total Order Price: $" + totalPrice);
+        totalPriceLabel.setBounds(80, 440, 500, 20);
+        add(totalPriceLabel);
+
+        JLabel timeLabel = new JLabel("reserve time: " + reserveTime);
+        timeLabel.setBounds(80, 40, 600, 20);
+        add(timeLabel);
+
     }
 }
