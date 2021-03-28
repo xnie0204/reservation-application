@@ -87,7 +87,6 @@ public class FoodListPage extends JFrame implements ActionListener {
         foodList.save(FoodList.myFile);
         new FoodListPage(foodList);
         dispose();
-        dispose();
     }
 
     //EFFECTS: show the total number, total price, reserve time.

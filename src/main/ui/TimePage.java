@@ -16,6 +16,7 @@ public class TimePage extends JFrame implements ActionListener {
 
 
     public TimePage(FoodListPage foodListPage, FoodList foodList) {
+        super("change time");
         this.foodList = foodList;
         this.foodListPage = foodListPage;
         setDefaultCloseOperation(HIDE_ON_CLOSE);

@@ -40,7 +40,6 @@ public class AddFoodPage extends JFrame implements ActionListener {
         addButton();
         setBackground();
 
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         pack();
         setLocationRelativeTo(null);
@@ -60,6 +59,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
         }
         JOptionPane.showMessageDialog(null, "add successfully");
         foodList.save(FoodList.myFile);
+        dispose();
 
         foodListPage.dispose();
         new FoodListPage(foodList);
