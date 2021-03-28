@@ -35,7 +35,7 @@ public class FoodListPage extends JFrame implements ActionListener {
         showTotal();
 
 
-        setTitle("Current Food List");
+        setTitle("Current Food List( can be auto saved)");
         setLayout(new FlowLayout());
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         pack();
