@@ -1,5 +1,6 @@
 package ui;
 
+import model.Food;
 import model.FoodList;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class AddFoodPage extends JFrame implements ActionListener {
         this.foodListPage = foodListPage;
 
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setPreferredSize(new Dimension(450, 450));
+        setPreferredSize(new Dimension(600, 450));
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
         setLayout(null);
 
@@ -47,9 +48,26 @@ public class AddFoodPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if
+        if (e.getActionCommand().equals(addBeefBurgerButton)) {
+            foodList.addFood(new Food("Beef Burger", 9));
 
+        } else if (e.getActionCommand().equals(addColaButton)) {
+            foodList.addFood(new Food("Cola", 1));
+        } else if (e.getActionCommand().equals(addSuperBurgerButton)) {
+            foodList.addFood(new Food("Super Burger", 10));
+        }
+        JOptionPane.showMessageDialog(null, "add successfully");
+        foodList.save(FoodList.myFile);
+
+        //REFRESH
+        foodListPage.dispose();
+        new FoodListPage(foodList);
+        dispose();
     }
+
+
+
+
 
     private void addButton() {
         creatButton(addBeefBurgerButton, 40);

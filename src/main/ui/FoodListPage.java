@@ -39,7 +39,7 @@ public class FoodListPage extends JFrame implements ActionListener {
                     food.getName(), // name
                     food.getPrice() //price
             };
-            tableColumn.addColumn(tableColumn);
+            tableColumn.addRow(row);
         }
 
         add(new JScrollPane(table));

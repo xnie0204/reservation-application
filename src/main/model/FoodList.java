@@ -25,7 +25,6 @@ public class FoodList implements Loadable, Saveable {
     private int totalPrice;
     private int totalOrderNum;
     public static final String myFile = "src/data/myFile.txt";
-    public static final String timeFile = "src/data/timeFile.txt";
 
     // EFFECTS: set is empty
     public FoodList() {

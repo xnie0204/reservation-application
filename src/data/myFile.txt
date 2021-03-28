@@ -1,1 +1,1 @@
-{"foods":[],"reserve time":""}
+{"foods":[{"price":"9","name":"Beef Burger"},{"price":"1","name":"Cola"},{"price":"9","name":"Beef Burger"},{"price":"1","name":"Cola"}],"reserve time":""}
