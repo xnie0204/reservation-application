@@ -24,7 +24,7 @@ public class ReserveAPP {
         superBurger = new Food("superBurger", 10);
         scanner = new Scanner(System.in);
         foodList = new FoodList();
-        foodList.load(FoodList.myFile);
+    //    foodList.load(FoodList.myFile);
 
         runReserveApp();
     }

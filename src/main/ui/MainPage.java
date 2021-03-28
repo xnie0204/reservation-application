@@ -20,46 +20,51 @@ public class MainPage extends JFrame implements ActionListener {
     private String viewList;
     private JLabel label;
     private JTextField field;
-    private int buttonPosition = 150;
+    private int buttonPosition = 80;
     private int buttonWidth = 300;
-    private int buttonHeight = 30;
+    private int buttonHeight = 20;
     private String viewButton = "Check your current reserve list";
     private String clearButton = "Clear all food from your reserve list";
     private String quitButton = "save and quit APP";
     private FoodListPage foodListPage;
+    private JLabel background;
 
 
     public MainPage() {
-        //set the size of main
+        //set the size of main４５０
         super("Reserve Food Application");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(400, 90));
+        setPreferredSize(new Dimension(450, 450));
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
-        setLayout(new FlowLayout());
+        setLayout(null);
 
-        //set the background image.
-        try {
-            BufferedImage backgroundImage = ImageIO.read(new File("src/ui/image 1.jpeg"));
-            setContentPane(new BackgroundImage(backgroundImage));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //load the persistence
         foodList.load(FoodList.myFile);
 
         //set the construction
         label = new JLabel("Please select the option you want", JLabel.CENTER);
-        label.setBounds(26, 10, 300, 20);
+        label.setBounds(80, 10, 300, 20);
         add(label);
         label.setForeground(Color.darkGray);
+
+        //set the background image.
+        setBackground();
 
         addButton();
 
         pack();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+    }
+
+    private void setBackground() {
+        ImageIcon img = new ImageIcon("src/picture/background.jpg");
+        background = new JLabel("", img, JLabel.CENTER);
+        background.setBounds(0, 0, 450, 450);
+        add(background);
     }
 
 
@@ -73,12 +78,12 @@ public class MainPage extends JFrame implements ActionListener {
 
     //EFFECT: create a button in given postion.
     private void creatButton(String string, int yposition) {
-        JButton checkListButton = new JButton(string);
-        checkListButton.setBounds(buttonPosition, yposition, buttonWidth, buttonHeight);
-        add(checkListButton);
-        checkListButton.setActionCommand(string);
-        checkListButton.addActionListener(this);
-        checkListButton.setForeground(Color.black);
+        JButton button = new JButton(string);
+        button.setBounds(buttonPosition, yposition, buttonWidth, buttonHeight);
+        add(button);
+        button.setActionCommand(string);
+        button.addActionListener(this);
+        button.setForeground(Color.black);
 
     }
 
