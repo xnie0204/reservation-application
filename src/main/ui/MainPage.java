@@ -17,9 +17,7 @@ import java.io.IOException;
 //Show the main page of the APP.
 public class MainPage extends JFrame implements ActionListener {
     private FoodList foodList = new FoodList();
-    private String viewList;
     private JLabel label;
-    private JTextField field;
     private int buttonPosition = 80;
     private int buttonWidth = 300;
     private int buttonHeight = 20;

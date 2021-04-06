@@ -1,5 +1,6 @@
 package ui;
 
+import exception.InvalidTimeException;
 import model.Food;
 import model.FoodList;
 
@@ -130,7 +131,11 @@ public class ReserveAPP {
         System.out.println("Enter the time you want to reserve, eg( XX:XX)");
 
         String time = scanner.nextLine();
-        foodList.setTime(time);
+        try {
+            foodList.setTime(time);
+        } catch (InvalidTimeException e) {
+            System.out.println("wrong formate");
+        }
     }
 
 

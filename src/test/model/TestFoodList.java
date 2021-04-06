@@ -1,5 +1,6 @@
 package model;
 
+import exception.InvalidTimeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -64,18 +65,47 @@ public class TestFoodList extends JsonTest {
     public void testSetTime() {
         assertEquals("Not set yet", foodList.getTime());
 
-        foodList.setTime("12:00");
+        try {
+            foodList.setTime("12:00");
+        } catch (InvalidTimeException e) {
+            fail("excepted not throw");
+        }
         assertEquals("12:00", foodList.getTime());
 
-        foodList.setTime("HAHAHAAHHA");
-        assertEquals("please set again", foodList.getTime());
     }
 
     @Test
-    public void testChangeToDataForm() {
-        assertTrue(foodList.changeToDataForm("12:00"));
-        assertFalse(foodList.changeToDataForm("??????"));
+    public void testSetWrongTime(){
+        try {
+            foodList.setTime("HAHAHAAHHA");
+            fail("excepted to be thrown");
+        } catch (InvalidTimeException e) {
+
+        }
+
     }
+
+    @Test
+    public void testSetBeforWorkTime(){
+        try{
+            foodList.setTime("7:00");
+            fail("excepted to be thrown");
+        } catch (InvalidTimeException e) {
+
+        }
+    }
+
+    @Test
+    public void testSetAfterWorkTime(){
+        try{
+            foodList.setTime("23:00");
+            fail("excepted to be thrown");
+        } catch (InvalidTimeException e) {
+
+        }
+    }
+
+
 
     @Test
     public void testSaveSuccesfullyInRightFile() {
@@ -172,7 +202,7 @@ public class TestFoodList extends JsonTest {
             assertEquals(0, foodList.size());
             List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
             String stringTxt = lines.get(0);
-            String assumeTxt = "[]";
+            String assumeTxt = "{foods:[]}";
             assertEquals(assumeTxt, stringTxt);
         } catch (IOException e) {
             fail("clear all false");
@@ -197,7 +227,7 @@ public class TestFoodList extends JsonTest {
         foodList.clearSaveFileFile(FoodList.myFile);
         List<String> lines = Files.readAllLines(Paths.get(FoodList.myFile));
         String stringTxt = lines.get(0);
-        String assumeTxt = "[]";
+        String assumeTxt = "{foods:[]}";
         assertEquals(assumeTxt, stringTxt);
     }catch(IOException e){
         fail("clear all false");

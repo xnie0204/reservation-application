@@ -1,5 +1,6 @@
 package ui;
 
+import exception.InvalidTimeException;
 import model.FoodList;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class TimePage extends JFrame implements ActionListener {
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
         setLayout(null);
 
-        JLabel timeLabel = new JLabel("Please change your reserve time(format : XX:XX)");
+        JLabel timeLabel = new JLabel("Please change your reserve time(format : XX:XX AM/PM)");
         timeLabel.setBounds(48, 40, 400, 20);
         add(timeLabel);
         timeLabel.setForeground(Color.darkGray);
@@ -57,8 +58,13 @@ public class TimePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(finishButtonString)) {
             String timeReserve = reserveTimeField.getText();
-            foodList.setTime(timeReserve);
-          //  JOptionPane.showMessageDialog(null, "successfully");
+            try {
+                foodList.setTime(timeReserve);
+            } catch (InvalidTimeException invalidTimeException) {
+
+                JOptionPane.showMessageDialog(null, invalidTimeException.getMessage());
+            }
+            //  JOptionPane.showMessageDialog(null, "successfully");
             foodList.save(FoodList.myFile);
             foodListPage.dispose();
             new FoodListPage(foodList);

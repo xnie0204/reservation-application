@@ -1,6 +1,7 @@
 package model;
 
 
+import exception.InvalidTimeException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import persistence.Loadable;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -89,25 +91,34 @@ public class FoodList implements Loadable, Saveable {
 
     //MODIFIES: this
     //EFFECTS: set the reserve time.
-    public void setTime(String time) {
-        if (changeToDataForm(time)) {
-            reserveTime = time;
-        } else {
-            reserveTime = "please set again";
-        }
+    public void setTime(String time) throws InvalidTimeException {
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String earliestWorkTimeString = "08:00";
+        String latestWorkTimeString = "22:00";
+        Date earliestWorkTime;
+        Date latestWorkTime;
+        Date resertivetime;
 
-    }
-
-    //EFFECTS: change the reserve time to data format, and refuse the no legal data format.
-    public boolean changeToDataForm(String time) {
-        DateFormat timeFormat = new SimpleDateFormat("hh:mm");
         try {
-            timeFormat.parse(time);
-            return true;
-        } catch (ParseException p) {
-            System.out.println("invalid time format,set again");
-            return false;
+            earliestWorkTime = timeFormat.parse(earliestWorkTimeString);
+            latestWorkTime = timeFormat.parse(latestWorkTimeString);
+            resertivetime = timeFormat.parse(time);
+
+        } catch (ParseException e) {
+            throw new InvalidTimeException("Invalid Time Format");
         }
+
+
+        if (resertivetime.before(earliestWorkTime)) {
+            throw new InvalidTimeException("not work time");
+        }
+        if (resertivetime.after(latestWorkTime)) {
+            throw new InvalidTimeException("not work time");
+        }
+
+        this.reserveTime = time;
+
+
     }
 
 
@@ -158,8 +169,8 @@ public class FoodList implements Loadable, Saveable {
             }
             JSONObject jsonObject = new JSONObject();
             JSONArray jsonArray = new JSONArray(jsonObjects);
-            jsonObject.put("foods",jsonArray);
-            jsonObject.put("reserve time",reserveTime);
+            jsonObject.put("foods", jsonArray);
+            jsonObject.put("reserve time", reserveTime);
             printWriter.println(jsonObject.toString());
             printWriter.close();
         } catch (IOException e) {

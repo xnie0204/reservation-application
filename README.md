@@ -25,3 +25,7 @@ reserve list.
 - As a user, I want to be able to save my to-do list to file.
 - As a user, I want to be able to be able to load my to-do list from file.
 
+### Phase 4: Task 2
+- add a robust design in foodList class which in setTime method. This design helps void no work time and wrong time format.
+
+### Phase 4: Task 3
