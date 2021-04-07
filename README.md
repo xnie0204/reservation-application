@@ -29,3 +29,4 @@ reserve list.
 - add a robust design in foodList class which in setTime method. This design helps void no work time and wrong time format.
 
 ### Phase 4: Task 3
+- I would creat a abstract called page, all class including page   can be extends to this abstract class, 
