@@ -44,7 +44,7 @@ public class TestFoodList extends JsonTest {
 
 
     @Test
-    public void testGetTotalPrice() {
+    public void testGetTotalPrice()  {
         assertEquals(0, foodList.getTotalPrice());
 
         foodList.addFood(cola);
